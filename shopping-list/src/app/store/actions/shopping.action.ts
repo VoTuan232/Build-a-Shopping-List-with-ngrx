@@ -17,31 +17,31 @@ export class LoadItemAction implements Action {
 export class LoadItemSuccessAction implements Action {
   readonly type = ShoppingActionsTypes.LOAD_ITEM_SUCCESS;
 
-  constructor(public payload: Array<ShoppingItem>) {}
+  constructor(public payload: ShoppingItem[]) { }
 }
 
 export class LoadItemFailureAction implements Action {
   readonly type = ShoppingActionsTypes.LOAD_ITEM_FAILURE;
 
-  constructor(public payload: Error) {}
+  constructor(public payload: Error) { }
 }
 
 export class AddItemAction implements Action {
   readonly type = ShoppingActionsTypes.ADD_ITEM;
 
-  constructor(public payload: Array<ShoppingItem>) {}
+  constructor(public payload: ShoppingItem) { }
 }
 
 export class AddItemSuccessAction implements Action {
   readonly type = ShoppingActionsTypes.ADD_ITEM_SUCCESS;
 
-  constructor(public payload: ShoppingItem) {}
+  constructor(public payload: ShoppingItem) { }
 }
 
 export class DeleteItemAction implements Action {
   readonly type = ShoppingActionsTypes.DELETE_ITEM;
 
-  constructor(public payload: string) {}
+  constructor(public payload: string) { }
 }
 
 export type ShoppingAction =

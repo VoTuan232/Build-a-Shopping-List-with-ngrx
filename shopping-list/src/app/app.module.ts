@@ -10,6 +10,7 @@ import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { ShoppingEffects } from './store/effects/shopping.effects';
+import { reducers, metaReducers } from './store/models/app-state.model';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,8 +18,15 @@ import { ShoppingEffects } from './store/effects/shopping.effects';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    StoreModule.forRoot({
-      shopping: ShoppingReducer,
+    // StoreModule.forRoot({
+    //   shopping: ShoppingReducer,
+    // }),
+    StoreModule.forRoot(reducers, {
+      metaReducers,
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+      },
     }),
     EffectsModule.forRoot([ShoppingEffects]),
     StoreDevtoolsModule.instrument({
@@ -29,4 +37,4 @@ import { ShoppingEffects } from './store/effects/shopping.effects';
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

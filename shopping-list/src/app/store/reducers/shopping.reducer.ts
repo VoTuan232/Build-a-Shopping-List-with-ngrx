@@ -1,9 +1,5 @@
+import { ShoppingAction, ShoppingActionsTypes } from '../actions/shopping.action';
 import { ShoppingItem } from '../models/shopping-item.model';
-import {
-  ShoppingAction,
-  ShoppingActionsTypes,
-} from '../actions/shopping.action';
-import { unescapeIdentifier } from '@angular/compiler';
 
 export interface ShoppingState {
   lists: ShoppingItem[];
@@ -20,7 +16,7 @@ const initialState: ShoppingState = {
 export function ShoppingReducer(
   state: ShoppingState = initialState,
   action: ShoppingAction
-) {
+): ShoppingState {
   switch (action.type) {
     case ShoppingActionsTypes.LOAD_ITEM:
       return {
@@ -35,7 +31,7 @@ export function ShoppingReducer(
         error: undefined,
       };
     case ShoppingActionsTypes.ADD_ITEM_SUCCESS:
-      return { ...state, lists: action.payload, loading: false };
+      return { ...state, lists: [...state.lists, action.payload], loading: false };
     // case ShoppingActionsTypes.DELETE_ITEM:
     //   return state.filter((item) => item.id !== action.payload);
     default:

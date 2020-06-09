@@ -9,7 +9,7 @@ import { ShoppingItem } from '../store/models/shopping-item.model';
 export class ShoppingService {
   private SHOPPING_URL = 'http://localhost:3000/shopping';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getShoppingItems() {
     return this.http.get<ShoppingItem[]>(this.SHOPPING_URL).pipe(delay(2000));

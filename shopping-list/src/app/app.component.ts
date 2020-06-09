@@ -16,16 +16,16 @@ import { v4 as uuid } from 'uuid';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  shoppingItems: Observable<Array<ShoppingItem>>;
+  shoppingItems: Observable<ShoppingItem[]>;
   loading$: Observable<Boolean>;
   error$: Observable<Error>;
   newShoppingItem: ShoppingItem = { id: '', name: '' };
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
     this.shoppingItems = this.store.select((store) => store.shopping.lists);
-    this.loading$ = this.store.select((store) => store.shopping.loading);
+    this.loading$ = this.store.pipe(select((store) => store.shopping.loading));
     this.error$ = this.store.select((store) => store.shopping.error);
 
     this.store.dispatch(new LoadItemAction());
